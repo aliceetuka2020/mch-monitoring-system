@@ -56,7 +56,7 @@ Stop a running development server with `Ctrl+C`.
 
 ## 3. Environment configuration
 
-The app requires PostgreSQL. Set `DATABASE_URL` in a private environment file or process environment before running the application.
+The app requires PostgreSQL. Set `DATABASE_URL` and `DIRECT_URL` in a private environment file or process environment before running Prisma schema operations or the application.
 
 For production, set a strong, private `AUTH_SECRET` in the deployment environment. Do not commit secrets to Git, paste them into test output, or include them in screenshots. Production startup is expected to fail if the required secret is missing.
 

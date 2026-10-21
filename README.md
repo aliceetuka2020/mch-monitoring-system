@@ -10,21 +10,21 @@ An appointment always belongs to a mother. It may also be linked to one of that 
 
 ## Setup
 
-Use Node.js 18 or later. From this project directory run `npm install`, `npx prisma db push`, `npm run db:migrate-data`, `npm run db:seed`, then `npm run dev`. Open `http://localhost:3000` in a browser. For a production deployment, configure a strong, private `AUTH_SECRET` environment variable before starting the application. Production startup stops with a clear error if it is missing. Do not commit the secret or place it in application logs.
+Use Node.js 20.9 or later. Configure both `DATABASE_URL` and `DIRECT_URL` in a private environment file; see `.env.example`. From this project directory run `npm install`, `npx prisma db push`, `npm run db:migrate-data`, `npm run db:seed`, then `npm run dev`. Open `http://localhost:3000` in a browser. For production, configure a strong, private `AUTH_SECRET` before starting the application. Production startup stops with a clear error if it is missing. Never commit secrets or place them in application logs.
 
 ## Deploying to Vercel
 
 See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) for GitHub import steps, Supabase pooled and direct connection variables, the required production secret, and optional Twilio settings. Do not add `.env` or production credentials to GitHub. Use a separate Supabase database for Vercel Preview deployments; production environment variables should be scoped to Production.
 
-## Default accounts
+## Demo accounts
 
-The seeded administrator account is `admin@karuphc.gov.ng` with password `Admin123!`. The seeded health-worker account is `worker@karuphc.gov.ng` with password `Worker123!`. Change both passwords after the initial sign-in. New accounts and password changes require at least eight characters with one letter and one number.
+The development seeder creates demo accounts described in [DEMO_LOGIN_CREDENTIALS.md](./DEMO_LOGIN_CREDENTIALS.md). Do not use demo credentials in production. Before production use, change credentials for accounts that must remain and disable accounts that are not needed. New accounts and password changes require at least eight characters with one letter and one number.
 
 ## Database upgrades
 
 Back up a populated database with `npm run db:backup` before updating. Apply the additive Prisma schema using `npx prisma db push`, then run `npm run db:migrate-data`. The data backfill preserves old maternal history by copying it into the new previous-pregnancies field when that field is empty. It fills guardian details from each child's mother when missing, calculates stored ages for existing growth measurements, and creates the default reminder setting. The schema additions use nullable fields or safe defaults and do not delete existing records. The procedure is documented in `prisma/migrations/README.md`.
 
-PostgreSQL is required. Set `DATABASE_URL` to the PostgreSQL connection string in the deployment environment, then run `npx prisma db push` and `npm run db:migrate-data` against a backed-up database. The runtime Prisma client reads that value. SQLite and MySQL connection strings are not supported by this project.
+PostgreSQL is required. Set `DATABASE_URL` to the runtime PostgreSQL connection string and `DIRECT_URL` to a direct/session connection before running `npx prisma db push` and `npm run db:migrate-data` against a backed-up database. Prisma Client uses `DATABASE_URL` at runtime; schema operations use `DIRECT_URL`. SQLite and MySQL connection strings are not supported by this project.
 
 ## Patient reminders
 
@@ -60,7 +60,7 @@ Run `npm test` for unit and API integration tests. The test runner applies the P
 
 Health workers can register and edit routine healthcare information. Deleting patients, children, and clinical records, changing system settings, managing users, and exporting reports are administrator-only operations enforced by the server. Login lockout counters are held in memory and clear after process restarts. A multi-instance deployment should use a shared rate-limit store. The default console reminder provider is for development and testing only. Configure Twilio for production SMS delivery. Add a real SMS provider and configure its credentials securely before patient delivery. The local weight-for-age lookup is a simplified screening aid and is not a replacement for the WHO growth standards. This system supports record management and does not replace professional clinical judgment.
 
-The dependency audit run for this update reports one unresolved critical Next.js advisory affecting the Next.js 14 release line. The published fix requires Next.js 16.4.0, a major-version change outside the specified Next.js 14 stack, so this project retains Next.js 14.2.35. Upgrade and regression-test the framework major before exposing the deployment to the public internet. PostCSS is overridden to version 8.5.23 to resolve its production advisory.
+Next.js 16 requires Node.js 20.9 or later. Keep production dependencies updated and run `npm audit --omit=dev` before a public deployment. PostCSS is overridden to version 8.5.23.
 
 ## Database backup
 

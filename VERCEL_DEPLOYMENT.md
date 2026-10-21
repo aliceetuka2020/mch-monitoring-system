@@ -5,7 +5,7 @@
 1. Sign in to [Vercel](https://vercel.com/) and choose **Add New → Project**.
 2. Import `aliceetuka2020/mch-monitoring-system` from GitHub.
 3. Set **Root Directory** to `.`. The repository root is already the Next.js application.
-4. Keep the detected Next.js framework and default build settings (`npm run build`).
+4. Keep the detected Next.js framework and default build settings (`npm run build`). Use Node.js 20.9 or later.
 5. Add the environment variables below before deploying. Select **Production** for production credentials. Do not expose the production database to Preview deployments; use a separate Supabase staging project and separate `AUTH_SECRET` for Preview.
 
 ## Required production environment variables
