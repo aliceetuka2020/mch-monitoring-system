@@ -1,0 +1,45 @@
+{
+  "name": "mch-monitoring-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "node prisma/seed.js",
+    "db:backup": "node scripts/backup.js",
+    "db:restore": "node scripts/restore.js",
+    "db:migrate-data": "node scripts/migrate-data.js",
+    "reminders:run": "node scripts/run-reminders.js",
+    "test": "node scripts/run-tests.js",
+    "test:unit": "vitest run tests/unit.test.js tests/features.unit.test.js tests/rbac.unit.test.js",
+    "test:e2e": "playwright test"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "bcryptjs": "^2.4.3",
+    "next": "^14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@testing-library/react": "^16.3.3",
+    "@vitejs/plugin-react": "^6.1.2",
+    "jsdom": "^30.1.2",
+    "postcss": "8.5.23",
+    "prisma": "^5.19.0",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^5.0.4"
+  },
+  "overrides": {
+    "postcss": "8.5.23"
+  }
+}

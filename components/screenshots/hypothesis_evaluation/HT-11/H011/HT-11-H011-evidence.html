@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HT-11 / H011 — Questionnaire scale validation evidence</title>
+    <style>
+      :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #19283a; background: #f1f5f9; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 20px 26px; min-width: 900px; }
+      main { max-width: 1160px; margin: 0 auto; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; min-height: 64px; padding: 12px 20px; border-radius: 9px; background: #17466a; color: #fff; }
+      .eyebrow { margin: 0 0 4px; color: #c4d8e8; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+      .brand { margin: 0; font-size: 17px; font-weight: 700; }
+      .unit { text-align: right; font-size: 11px; line-height: 1.5; color: #e0ebf4; }
+      .summary { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding: 15px 20px; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; }
+      h1 { margin: 3px 0 5px; font-size: 20px; }
+      .subheading { margin: 0; color: #637286; font-size: 11px; }
+      .score { min-width: 195px; padding: 10px 15px; border-radius: 9px; background: #fff7e5; text-align: center; }
+      .score-label { color: #795b19; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+      .score-value { margin-top: 3px; color: #795b19; font-size: 18px; font-weight: 700; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; }
+      .metric { min-height: 58px; padding: 10px 15px; border-radius: 9px; }
+      .metric-label { font-size: 10px; color: #526175; }
+      .metric-value { margin-top: 2px; font-size: 18px; font-weight: 700; }
+      .passed { background: #e8fbf3; color: #167451; }
+      .failed { background: #fff0f0; color: #a53d45; }
+      .blocked { background: #fff9e7; color: #946814; }
+      .section { overflow: hidden; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; }
+      .section-heading { padding: 10px 15px 9px; border-bottom: 1px solid #e5eaf0; }
+      .section-heading h2 { margin: 0; font-size: 13px; }
+      .section-heading p { margin: 3px 0 0; color: #6a7788; font-size: 9px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      th, td { padding: 7px 10px; border-bottom: 1px solid #edf0f4; text-align: left; vertical-align: top; font-size: 9px; line-height: 1.35; overflow-wrap: anywhere; }
+      th { background: #f7f9fb; color: #526175; font-weight: 700; }
+      tbody tr:last-child td { border-bottom: 0; }
+      .case { width: 25%; font-weight: 700; }
+      .expectation { width: 35%; color: #536175; }
+      .actual { width: 30%; color: #354357; }
+      .result { width: 10%; font-weight: 700; color: #167451; }
+      .details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+      .detail-card { padding: 10px 13px; border: 1px solid #e4eaf0; border-radius: 9px; background: #fff; }
+      .detail-card h2 { margin: 0 0 6px; font-size: 11px; }
+      .detail-card p { margin: 4px 0; color: #536175; font-size: 9px; line-height: 1.35; }
+      code { padding: 2px 4px; border-radius: 4px; background: #f1f5f9; color: #26374d; font-family: Consolas, monospace; font-size: 9px; }
+      .note { margin-top: 9px; padding: 9px 12px; border-left: 4px solid #d59d25; border-radius: 5px; background: #fff9e7; color: #654f20; font-size: 9px; line-height: 1.4; }
+      footer { display: flex; justify-content: space-between; gap: 12px; margin: 8px 2px 0; color: #6a7788; font-size: 8px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MCH Monitoring System · Hypothesis evaluation</p>
+          <p class="brand">Perceived Usefulness &amp; Intention to Use</p>
+        </div>
+        <div class="unit">
+          <strong>HT-11 / H011</strong><br>
+          Post-pilot questionnaire analysis
+        </div>
+      </header>
+
+      <section class="summary" aria-labelledby="report-title">
+        <div>
+          <p class="eyebrow" style="color:#718095">Evaluation status</p>
+          <h1 id="report-title">Usefulness/intention scale workflow</h1>
+          <p class="subheading">Template, Pearson/Spearman analysis, confidence intervals, and optional regression validation</p>
+        </div>
+        <div class="score" aria-label="Hypothesis is not tested because participant responses are unavailable">
+          <div class="score-label">Study outcome</div>
+          <div class="score-value">NOT TESTED · NO DATA</div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Validation run totals">
+        <div class="metric passed"><div class="metric-label">Validation tests passed</div><div class="metric-value">8</div></div>
+        <div class="metric failed"><div class="metric-label">Validation tests failed</div><div class="metric-value">0</div></div>
+        <div class="metric blocked"><div class="metric-label">Participant responses supplied</div><div class="metric-value">0</div></div>
+      </section>
+
+      <section class="section" aria-labelledby="breakdown-title">
+        <div class="section-heading">
+          <h2 id="breakdown-title">Validation case breakdown</h2>
+          <p>All test observations are synthetic software fixtures; they do not represent post-pilot participant responses.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="case">Validation case</th>
+              <th class="expectation">Expected behavior</th>
+              <th class="actual">Observed result</th>
+              <th class="result">Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="case">No study data</td><td class="expectation">Return <code>NO_STUDY_DATA</code> with no inferential metrics.</td><td class="actual">Header-only template and CLI path returned the no-data state.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Composite score construction</td><td class="expectation">Compute PU and BI means from the complete, consistently keyed item sets.</td><td class="actual">Synthetic response rows produced the expected composite means.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Pearson result</td><td class="expectation">Calculate coefficient, two-sided p-value, and Fisher-z 95% CI.</td><td class="actual">Synthetic monotone inputs produced the expected coefficient and ordered interval.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Spearman interval</td><td class="expectation">Bootstrap paired participant scores deterministically for the rank-correlation CI.</td><td class="actual">Repeated synthetic analysis produced identical interval bounds.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Automatic selection</td><td class="expectation">Select Spearman when a composite marginal normality screen falls below alpha.</td><td class="actual">Skewed synthetic scores selected Spearman as specified.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Optional planned regression</td><td class="expectation">Omit OLS output by default; include slope, R-squared, p-value, and CI only when requested.</td><td class="actual">Regression was absent by default and returned expected synthetic slope output with the flag.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Schema and response validation</td><td class="expectation">Reject incorrect columns, duplicate participant codes, and invalid Likert responses.</td><td class="actual">Invalid synthetic inputs raised explicit validation errors.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Constant score detection</td><td class="expectation">Reject undefined correlation when a composite score has zero variance.</td><td class="actual">Constant synthetic usefulness scores raised the expected error.</td><td class="result">PASS</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="details" aria-label="Execution and study details">
+        <div class="detail-card">
+          <h2>Execution details</h2>
+          <p><strong>Command:</strong> <code>python evaluation\HT-11-H011\test_analyze_scales.py</code></p>
+          <p><strong>Framework:</strong> Python unittest · one focused validation file</p>
+          <p><strong>Run result:</strong> 8 tests passed · 0 failed · exit code 0</p>
+        </div>
+        <div class="detail-card">
+          <h2>Instrument and interpretation limits</h2>
+          <p>CSV item codes are placeholders, not validated questionnaire wording.</p>
+          <p>Approve instrument, translation, Likert anchors, reverse scoring, and complete-case rule before collection.</p>
+          <p>Regression is optional, unadjusted, and must be prespecified with residual/linearity diagnostics.</p>
+        </div>
+      </section>
+
+      <div class="note"><strong>Interpretation boundary:</strong> Software validation does not show that participants perceived the system as useful or intend to use it. No participant scores, correlation, p-value, confidence interval, regression result, or hypothesis conclusion is available.</div>
+      <footer>
+        <span>Evidence source: focused Python unittest output</span>
+        <span>HT-11 / H011 · hypothesis not tested with data</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HT-12 / H012 — Service quality evaluation evidence</title>
+    <style>
+      :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #19283a; background: #f1f5f9; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 20px 26px; min-width: 900px; }
+      main { max-width: 1160px; margin: 0 auto; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; min-height: 64px; padding: 12px 20px; border-radius: 9px; background: #17466a; color: #fff; }
+      .eyebrow { margin: 0 0 4px; color: #c4d8e8; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+      .brand { margin: 0; font-size: 17px; font-weight: 700; }
+      .unit { text-align: right; font-size: 11px; line-height: 1.5; color: #e0ebf4; }
+      .summary { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding: 15px 20px; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; }
+      h1 { margin: 3px 0 5px; font-size: 20px; }
+      .subheading { margin: 0; color: #637286; font-size: 11px; }
+      .score { min-width: 195px; padding: 10px 15px; border-radius: 9px; background: #fff7e5; text-align: center; }
+      .score-label { color: #795b19; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+      .score-value { margin-top: 3px; color: #795b19; font-size: 18px; font-weight: 700; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; }
+      .metric { min-height: 58px; padding: 10px 15px; border-radius: 9px; }
+      .metric-label { font-size: 10px; color: #526175; }
+      .metric-value { margin-top: 2px; font-size: 18px; font-weight: 700; }
+      .passed { background: #e8fbf3; color: #167451; }
+      .failed { background: #fff0f0; color: #a53d45; }
+      .blocked { background: #fff9e7; color: #946814; }
+      .section { overflow: hidden; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; }
+      .section-heading { padding: 10px 15px 9px; border-bottom: 1px solid #e5eaf0; }
+      .section-heading h2 { margin: 0; font-size: 13px; }
+      .section-heading p { margin: 3px 0 0; color: #6a7788; font-size: 9px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      th, td { padding: 7px 10px; border-bottom: 1px solid #edf0f4; text-align: left; vertical-align: top; font-size: 9px; line-height: 1.35; overflow-wrap: anywhere; }
+      th { background: #f7f9fb; color: #526175; font-weight: 700; }
+      tbody tr:last-child td { border-bottom: 0; }
+      .case { width: 25%; font-weight: 700; }
+      .expectation { width: 35%; color: #536175; }
+      .actual { width: 30%; color: #354357; }
+      .result { width: 10%; font-weight: 700; color: #167451; }
+      .details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+      .detail-card { padding: 10px 13px; border: 1px solid #e4eaf0; border-radius: 9px; background: #fff; }
+      .detail-card h2 { margin: 0 0 6px; font-size: 11px; }
+      .detail-card p { margin: 4px 0; color: #536175; font-size: 9px; line-height: 1.35; }
+      code { padding: 2px 4px; border-radius: 4px; background: #f1f5f9; color: #26374d; font-family: Consolas, monospace; font-size: 9px; }
+      .note { margin-top: 9px; padding: 9px 12px; border-left: 4px solid #d59d25; border-radius: 5px; background: #fff9e7; color: #654f20; font-size: 9px; line-height: 1.4; }
+      footer { display: flex; justify-content: space-between; gap: 12px; margin: 8px 2px 0; color: #6a7788; font-size: 8px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MCH Monitoring System · Hypothesis evaluation</p>
+          <p class="brand">Overall Healthcare Service-Delivery Quality</p>
+        </div>
+        <div class="unit">
+          <strong>HT-12 / H012</strong><br>
+          Predefined baseline/post indicators
+        </div>
+      </header>
+
+      <section class="summary" aria-labelledby="report-title">
+        <div>
+          <p class="eyebrow" style="color:#718095">Evaluation status</p>
+          <h1 id="report-title">Indicator comparison workflow</h1>
+          <p class="subheading">Paired or independent design · typed measures · Holm-adjusted tests</p>
+        </div>
+        <div class="score" aria-label="H012 is not tested with study data">
+          <div class="score-label">Study outcome</div>
+          <div class="score-value">NOT TESTED · NO DATA</div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Validation run totals">
+        <div class="metric passed"><div class="metric-label">Validation tests passed</div><div class="metric-value">11</div></div>
+        <div class="metric failed"><div class="metric-label">Validation tests failed</div><div class="metric-value">0</div></div>
+        <div class="metric blocked"><div class="metric-label">Study observations supplied</div><div class="metric-value">0</div></div>
+      </section>
+
+      <section class="section" aria-labelledby="breakdown-title">
+        <div class="section-heading">
+          <h2 id="breakdown-title">Software validation case breakdown</h2>
+          <p>All generated observations are synthetic fixtures used to test implementation behavior, not service delivery.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="case">Validation case</th>
+              <th class="expectation">Expected behavior</th>
+              <th class="actual">Observed result</th>
+              <th class="result">Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="case">Empty observation template</td><td class="expectation">Return <code>NO_STUDY_DATA</code> with no inferential output.</td><td class="actual">Header-only template and CLI path returned a no-data status.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Predefined indicator plan</td><td class="expectation">Require the operational definition, source, denominator, direction, type, and scale bounds.</td><td class="actual">Approved-plan fields loaded; missing synthetic definition was rejected.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Paired continuous indicator</td><td class="expectation">Use participant-level pre/post differences and select a paired t-test when its screen permits.</td><td class="actual">Synthetic paired task-time observations were matched; paired t-test selected.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Paired binary / ordinal indicators</td><td class="expectation">Use exact McNemar test for binary pairs and exact sign test for ordinal pairs.</td><td class="actual">Both paired indicator types selected their prespecified nonparametric/exact tests.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Skewed paired differences</td><td class="expectation">Fall back to two-sided Wilcoxon signed-rank test.</td><td class="actual">Skewed synthetic differences selected Wilcoxon after the normality screen.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Independent indicators</td><td class="expectation">Select Fisher exact for binary outcomes and Mann-Whitney U for ordinal outcomes.</td><td class="actual">Distinct synthetic baseline/post cohorts used the specified independent tests.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Independent continuous indicator</td><td class="expectation">Select Welch's test when both group screens permit; do not assume equal variance.</td><td class="actual">Synthetic groups passed the screens and selected Welch's two-sample test.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Small independent samples</td><td class="expectation">Report descriptive values without a p-value when either cohort has fewer than two units.</td><td class="actual">One-unit-per-cohort synthetic data produced descriptive-only output.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Multiple indicator adjustment</td><td class="expectation">Apply a monotone, bounded Holm adjustment across tested indicators.</td><td class="actual">Synthetic p-values adjusted monotonically and remained capped at 1.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Design/schema safeguards</td><td class="expectation">Reject unknown design, duplicate observations, and indicators absent from the plan.</td><td class="actual">Invalid synthetic cases failed with explicit validation errors.</td><td class="result">PASS</td></tr>
+            <tr><td class="case">Cohort and completeness safeguards</td><td class="expectation">Reject reused independent IDs, out-of-range binary values, and incomplete paired data.</td><td class="actual">Synthetic design violations and incomplete pairs were rejected.</td><td class="result">PASS</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="details" aria-label="Execution and study details">
+        <div class="detail-card">
+          <h2>Execution details</h2>
+          <p><strong>Command:</strong> <code>python evaluation\HT-12-H012\test_analyze_service_quality.py</code></p>
+          <p><strong>Framework:</strong> Python unittest · focused analysis validation</p>
+          <p><strong>Run result:</strong> 11 tests passed · 0 failed · exit code 0</p>
+          <p><strong>Output:</strong> Per-indicator summaries, test selection, raw/adjusted p-values</p>
+        </div>
+        <div class="detail-card">
+          <h2>Instrument and inference limits</h2>
+          <p>Plan entries are examples, not an approved or validated service-quality instrument.</p>
+          <p>Document indicator definitions, denominators, missingness, implementation changes, and confounders before collection.</p>
+          <p>Analysis is unadjusted and does not account for clustering or establish causation.</p>
+        </div>
+      </section>
+
+      <div class="note"><strong>Interpretation boundary:</strong> Software validation is not evidence of improved service delivery. No baseline/post observations or test results are available. A short software pilot cannot establish improved maternal/child health or clinical outcomes.</div>
+      <footer>
+        <span>Evidence source: focused Python unittest output</span>
+        <span>HT-12 / H012 · hypothesis not tested with study data</span>
+      </footer>
+    </main>
+  </body>
+</html>

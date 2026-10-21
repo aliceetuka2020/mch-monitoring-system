@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HT-08 / H08 — Report timing validation evidence</title>
+    <style>
+      :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #19283a; background: #f1f5f9; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 20px 26px; min-width: 900px; }
+      main { max-width: 1160px; margin: 0 auto; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; min-height: 64px; padding: 12px 20px; border-radius: 9px; background: #17466a; color: #fff; }
+      .eyebrow { margin: 0 0 4px; color: #c4d8e8; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+      .brand { margin: 0; font-size: 17px; font-weight: 700; }
+      .unit { text-align: right; font-size: 11px; line-height: 1.5; color: #e0ebf4; }
+      .summary { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding: 15px 20px; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; }
+      h1 { margin: 3px 0 5px; font-size: 20px; }
+      .subheading { margin: 0; color: #637286; font-size: 11px; }
+      .score { min-width: 195px; padding: 10px 15px; border-radius: 9px; background: #fff7e5; text-align: center; }
+      .score-label { color: #795b19; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+      .score-value { margin-top: 3px; color: #795b19; font-size: 18px; font-weight: 700; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; }
+      .metric { min-height: 58px; padding: 10px 15px; border-radius: 9px; }
+      .metric-label { font-size: 10px; color: #526175; }
+      .metric-value { margin-top: 2px; font-size: 18px; font-weight: 700; }
+      .passed { background: #e8fbf3; color: #167451; }
+      .failed { background: #fff0f0; color: #a53d45; }
+      .blocked { background: #fff9e7; color: #946814; }
+      .section { overflow: hidden; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; }
+      .section-heading { padding: 10px 15px 9px; border-bottom: 1px solid #e5eaf0; }
+      .section-heading h2 { margin: 0; font-size: 13px; }
+      .section-heading p { margin: 3px 0 0; color: #6a7788; font-size: 9px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      th, td { padding: 7px 10px; border-bottom: 1px solid #edf0f4; text-align: left; vertical-align: top; font-size: 9px; line-height: 1.35; overflow-wrap: anywhere; }
+      th { background: #f7f9fb; color: #526175; font-weight: 700; }
+      tbody tr:last-child td { border-bottom: 0; }
+      .case { width: 25%; font-weight: 700; }
+      .expectation { width: 35%; color: #536175; }
+      .actual { width: 30%; color: #354357; }
+      .result { width: 10%; font-weight: 700; color: #167451; }
+      .details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+      .detail-card { padding: 10px 13px; border: 1px solid #e4eaf0; border-radius: 9px; background: #fff; }
+      .detail-card h2 { margin: 0 0 6px; font-size: 11px; }
+      .detail-card p { margin: 4px 0; color: #536175; font-size: 9px; line-height: 1.35; }
+      code { padding: 2px 4px; border-radius: 4px; background: #f1f5f9; color: #26374d; font-family: Consolas, monospace; font-size: 9px; }
+      .note { margin-top: 9px; padding: 9px 12px; border-left: 4px solid #d59d25; border-radius: 5px; background: #fff9e7; color: #654f20; font-size: 9px; line-height: 1.4; }
+      footer { display: flex; justify-content: space-between; gap: 12px; margin: 8px 2px 0; color: #6a7788; font-size: 8px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MCH Monitoring System · Hypothesis evaluation</p>
+          <p class="brand">Routine Report Preparation Time</p>
+        </div>
+        <div class="unit">
+          <strong>HT-08 / H08</strong><br>
+          Software validation evidence
+        </div>
+      </header>
+
+      <section class="summary" aria-labelledby="report-title">
+        <div>
+          <p class="eyebrow" style="color:#718095">Evaluation status</p>
+          <h1 id="report-title">Paired manual/system report timing</h1>
+          <p class="subheading">Equivalent report tasks from the same dataset · analysis code validation only</p>
+        </div>
+        <div class="score" aria-label="Hypothesis is not tested because study data are unavailable">
+          <div class="score-label">Study outcome</div>
+          <div class="score-value">NOT TESTED · NO DATA</div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Validation run totals">
+        <div class="metric passed"><div class="metric-label">Validation tests passed</div><div class="metric-value">7</div></div>
+        <div class="metric failed"><div class="metric-label">Validation tests failed</div><div class="metric-value">0</div></div>
+        <div class="metric blocked"><div class="metric-label">Study timing observations</div><div class="metric-value">0</div></div>
+      </section>
+
+      <section class="section" aria-labelledby="breakdown-title">
+        <div class="section-heading">
+          <h2 id="breakdown-title">Validation case breakdown</h2>
+          <p>Synthetic software fixtures validate data handling and method selection only; they are not participant timing results.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="case">Validation case</th>
+              <th class="expectation">Expected behavior</th>
+              <th class="actual">Observed result</th>
+              <th class="result">Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="case">Paired report aggregation</td>
+              <td class="expectation">Average multiple matched reports within participant before paired inference.</td>
+              <td class="actual">Synthetic input produced 16 report rows, 8 independent participant pairs, and 2 reports per participant.</td>
+              <td class="result">PASS</td>
+            </tr>
+            <tr>
+              <td class="case">Paired t-test path</td>
+              <td class="expectation">Use Shapiro–Wilk as a screen and select paired t-test when synthetic differences pass it.</td>
+              <td class="actual">The expected test path, normality screen, and paired direction were observed.</td>
+              <td class="result">PASS</td>
+            </tr>
+            <tr>
+              <td class="case">Wilcoxon path</td>
+              <td class="expectation">Use the two-sided Wilcoxon signed-rank test when synthetic differences fail the normality screen.</td>
+              <td class="actual">The screen fell below alpha and the Wilcoxon path returned a numeric p-value.</td>
+              <td class="result">PASS</td>
+            </tr>
+            <tr>
+              <td class="case">Empty template</td>
+              <td class="expectation">Return <code>NO_STUDY_DATA</code> without study statistics.</td>
+              <td class="actual">Header-only template raised the expected no-data status.</td>
+              <td class="result">PASS</td>
+            </tr>
+            <tr>
+              <td class="case">Duplicate and inconsistent rows</td>
+              <td class="expectation">Reject duplicate participant/report pairs and participants missing a report code.</td>
+              <td class="actual">Both invalid datasets raised explicit validation errors.</td>
+              <td class="result">PASS</td>
+            </tr>
+            <tr>
+              <td class="case">Dataset equivalence key</td>
+              <td class="expectation">Require each report code to use one consistent dataset code across participants.</td>
+              <td class="actual">A deliberately mismatched synthetic dataset code was rejected.</td>
+              <td class="result">PASS</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="details" aria-label="Execution and study details">
+        <div class="detail-card">
+          <h2>Execution details</h2>
+          <p><strong>Command:</strong> <code>python evaluation\HT-08-H08\test_analyze_report_times.py</code></p>
+          <p><strong>Framework:</strong> Python unittest · focused validation file only</p>
+          <p><strong>Run result:</strong> 7 tests passed · 0 failed · exit code 0</p>
+        </div>
+        <div class="detail-card">
+          <h2>Scope and assumptions</h2>
+          <p>Tests paired aggregation, equal task sets, dataset matching, normality-screen method selection, and no-data handling.</p>
+          <p>Study analysis assumes independent participants, comparable report tasks, and consistent timing rules.</p>
+          <p>Shapiro–Wilk is only a screen; neither a non-significant test nor a study p-value proves equivalence.</p>
+        </div>
+      </section>
+
+      <div class="note"><strong>Interpretation boundary:</strong> This run validates the analysis workflow only. No actual report preparation times, test statistic, study p-value, or hypothesis conclusion are available.</div>
+      <footer>
+        <span>Evidence source: focused Python unittest output</span>
+        <span>HT-08 / H08 · hypothesis not tested with data</span>
+      </footer>
+    </main>
+  </body>
+</html>

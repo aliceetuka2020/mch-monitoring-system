@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IT-01 — Login, session, and dashboard integration evidence</title>
+    <style>
+      :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #19283a; background: #f1f5f9; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 20px 26px; min-width: 900px; }
+      main { max-width: 1160px; margin: 0 auto; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; min-height: 64px; padding: 12px 20px; border-radius: 9px; background: #17466a; color: #fff; }
+      .eyebrow { margin: 0 0 4px; color: #c4d8e8; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+      .brand { margin: 0; font-size: 17px; font-weight: 700; }
+      .unit { text-align: right; font-size: 11px; line-height: 1.5; color: #e0ebf4; }
+      .summary { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding: 15px 20px; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; }
+      h1 { margin: 3px 0 5px; font-size: 20px; }
+      .subheading { margin: 0; color: #637286; font-size: 11px; }
+      .score { min-width: 150px; padding: 10px 15px; border-radius: 9px; background: #e8fbf3; text-align: center; }
+      .score-label { color: #167451; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+      .score-value { margin-top: 3px; color: #167451; font-size: 18px; font-weight: 700; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; }
+      .metric { min-height: 58px; padding: 10px 15px; border-radius: 9px; }
+      .metric-label { font-size: 10px; color: #526175; }
+      .metric-value { margin-top: 2px; font-size: 18px; font-weight: 700; }
+      .passed { background: #e8fbf3; color: #167451; }
+      .failed { background: #fff0f0; color: #a53d45; }
+      .observed { background: #eaf3fb; color: #285d82; }
+      .section { overflow: hidden; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; }
+      .section-heading { padding: 10px 15px 9px; border-bottom: 1px solid #e5eaf0; }
+      .section-heading h2 { margin: 0; font-size: 13px; }
+      .section-heading p { margin: 3px 0 0; color: #6a7788; font-size: 9px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      th, td { padding: 9px 10px; border-bottom: 1px solid #edf0f4; text-align: left; vertical-align: top; font-size: 10px; line-height: 1.4; overflow-wrap: anywhere; }
+      th { background: #f7f9fb; color: #526175; font-weight: 700; }
+      tbody tr:last-child td { border-bottom: 0; }
+      .step { width: 25%; font-weight: 700; }
+      .expected { width: 35%; color: #536175; }
+      .result { width: 40%; color: #354357; }
+      .details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+      .detail-card { padding: 11px 14px; border: 1px solid #e4eaf0; border-radius: 9px; background: #fff; }
+      .detail-card h2 { margin: 0 0 6px; font-size: 11px; }
+      .detail-card p { margin: 4px 0; color: #536175; font-size: 9px; line-height: 1.4; }
+      code { padding: 2px 4px; border-radius: 4px; background: #f1f5f9; color: #26374d; font-family: Consolas, monospace; font-size: 9px; }
+      .note { margin-top: 10px; padding: 10px 13px; border-left: 4px solid #d59d25; border-radius: 5px; background: #fff9e7; color: #654f20; font-size: 9px; line-height: 1.45; }
+      footer { display: flex; justify-content: space-between; gap: 12px; margin: 8px 2px 0; color: #6a7788; font-size: 8px; }
+      a { color: #145b87; text-decoration: none; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MCH Monitoring System · Integration testing</p>
+          <p class="brand">Login → Session → Dashboard</p>
+        </div>
+        <div class="unit">
+          <strong>IT-01</strong><br>
+          Valid active test account
+        </div>
+      </header>
+
+      <section class="summary" aria-labelledby="report-title">
+        <div>
+          <p class="eyebrow" style="color:#718095">Test outcome</p>
+          <h1 id="report-title">Authenticated dashboard navigation</h1>
+          <p class="subheading">Browser-driven integration test · configured active demo account · expected role medical_doctor</p>
+        </div>
+        <div class="score">
+          <div class="score-label">Result</div>
+          <div class="score-value">PASS</div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Test totals and observed role">
+        <div class="metric passed"><div class="metric-label">Tests passed</div><div class="metric-value">1</div></div>
+        <div class="metric failed"><div class="metric-label">Tests failed</div><div class="metric-value">0</div></div>
+        <div class="metric observed"><div class="metric-label">Authenticated role</div><div class="metric-value">medical_doctor</div></div>
+      </section>
+
+      <section class="section" aria-labelledby="steps-title">
+        <div class="section-heading">
+          <h2 id="steps-title">Verified workflow checkpoints</h2>
+          <p>Observed by Playwright against the running Next.js application and configured development/test database.</p>
+        </div>
+        <table>
+          <thead><tr><th class="step">Workflow step</th><th class="expected">Expected</th><th class="result">Observed</th></tr></thead>
+          <tbody>
+            <tr><td class="step">Open sign-in</td><td class="expected">Login form loads with email and password fields.</td><td class="result">Sign-in page and labeled fields loaded.</td></tr>
+            <tr><td class="step">Submit valid active account</td><td class="expected">Authentication API accepts credentials and establishes a session.</td><td class="result">Login API returned HTTP 200 and set the <code>mch_session</code> cookie with HttpOnly enabled.</td></tr>
+            <tr><td class="step">Verify session identity</td><td class="expected">Authenticated session endpoint returns the expected role.</td><td class="result"><code>/api/auth/me</code> returned role <code>medical_doctor</code> and the signed-in user identity.</td></tr>
+            <tr><td class="step">Load dashboard</td><td class="expected">Successful login navigates to the dashboard and loads overview information.</td><td class="result">Dashboard heading, facility overview, service metrics, and appointment panel were visible.</td></tr>
+            <tr><td class="step">Verify role-aware shell</td><td class="expected">Display the authenticated role and restrict navigation by its permissions.</td><td class="result">Sidebar displayed <code>medical_doctor</code>; the Users link was absent for this role.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="details" aria-label="Execution details and screenshot">
+        <div class="detail-card">
+          <h2>Execution details</h2>
+          <p><strong>Test:</strong> <code>e2e\IT-01.spec.ts</code></p>
+          <p><strong>Command:</strong> <code>playwright test IT-01.spec.ts</code></p>
+          <p><strong>Result:</strong> 1 passed · 0 failed · exit code 0</p>
+          <p><strong>Credentials:</strong> Supplied through process environment; no password is included in this report or test source.</p>
+        </div>
+        <div class="detail-card">
+          <h2>Captured application evidence</h2>
+          <p><a href="./IT-01-dashboard.png">Open the dashboard screenshot</a></p>
+          <p>Screenshot captures the dashboard viewport after session and role assertions.</p>
+          <p>Test account is a development/demo fixture; do not use these credentials in production.</p>
+        </div>
+      </section>
+
+      <div class="note"><strong>Scope note:</strong> The application currently presents shared service overview metrics to staff roles. Role-specific behavior verified here is the authenticated role identity and permission-filtered navigation; this run does not assert that the KPI dashboard content itself differs by role.</div>
+      <footer>
+        <span>Evidence source: Playwright browser run with an active development/test account</span>
+        <span>IT-01 · Login → session → dashboard</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+indicator_code,label,operational_definition,measurement_source,denominator,indicator_type,unit,expected_direction,minimum,maximum
+task_time,Time to complete a standardized task,"Elapsed seconds from task instruction to saved output verified against the checklist",Timestamped task log,One standardized task per unit at each timepoint,continuous,seconds,lower,,
+record_completeness,Required record fields completed,"All prespecified required fields present and valid for the eligible record",Approved record audit,One eligible record per unit at each timepoint,binary,proportion,higher,0,1
+follow_up_tracking,Follow-up correctly flagged for action,"Eligible follow-up is correctly identified as needing action within the prespecified window",Approved follow-up audit,One eligible follow-up per unit at each timepoint,binary,proportion,higher,0,1
+user_satisfaction,Overall user satisfaction,"Approved satisfaction instrument composite or item, scored using its prespecified rubric",Approved post-period questionnaire,One respondent per unit at each timepoint,ordinal,1-5 rating,higher,1,5

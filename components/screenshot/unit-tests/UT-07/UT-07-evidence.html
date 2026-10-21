@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UT-07 — Estimated delivery date calculation results</title>
+    <style>
+      :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #19283a; background: #f1f5f9; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 24px 32px; min-width: 900px; }
+      main { max-width: 1160px; margin: 0 auto; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; min-height: 68px; padding: 14px 22px; border-radius: 9px; background: #17466a; color: #fff; }
+      .eyebrow { margin: 0 0 4px; color: #c4d8e8; font-size: 10px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; }
+      .brand { margin: 0; font-size: 18px; font-weight: 700; }
+      .unit { text-align: right; font-size: 11px; line-height: 1.5; color: #e0ebf4; }
+      .summary { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding: 19px 22px; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; box-shadow: 0 2px 7px #1720330a; }
+      h1 { margin: 4px 0 5px; font-size: 21px; }
+      .subheading { margin: 0; color: #637286; font-size: 12px; }
+      .score { min-width: 170px; padding: 12px 18px; border-radius: 9px; background: #eff6ff; text-align: center; }
+      .score-label { color: #637286; font-size: 10px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; }
+      .score-value { margin-top: 3px; color: #17466a; font-size: 27px; font-weight: 700; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+      .metric { min-height: 66px; padding: 12px 17px; border-radius: 9px; }
+      .metric-label { font-size: 11px; color: #526175; }
+      .metric-value { margin-top: 2px; font-size: 19px; font-weight: 700; }
+      .passed { background: #e8fbf3; color: #167451; }
+      .failed { background: #fff0f0; color: #a53d45; }
+      .blocked { background: #fff9e7; color: #946814; }
+      .section { overflow: hidden; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; box-shadow: 0 2px 7px #1720330a; }
+      .section-heading { padding: 13px 17px 11px; border-bottom: 1px solid #e5eaf0; }
+      .section-heading h2 { margin: 0; font-size: 14px; }
+      .section-heading p { margin: 4px 0 0; color: #6a7788; font-size: 10px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      th, td { padding: 9px 12px; border-bottom: 1px solid #edf0f4; text-align: left; vertical-align: top; font-size: 10px; line-height: 1.4; overflow-wrap: anywhere; }
+      th { background: #f7f9fb; color: #526175; font-weight: 700; }
+      tbody tr:last-child td { border-bottom: 0; }
+      .case { width: 24%; font-weight: 700; }
+      .expectation { width: 32%; color: #536175; }
+      .actual { width: 32%; color: #354357; }
+      .result { width: 12%; font-weight: 700; color: #167451; }
+      .details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+      .detail-card { padding: 13px 16px; border: 1px solid #e4eaf0; border-radius: 9px; background: #fff; }
+      .detail-card h2 { margin: 0 0 8px; font-size: 12px; }
+      .detail-card p { margin: 5px 0; color: #536175; font-size: 10px; line-height: 1.45; }
+      code { padding: 2px 5px; border-radius: 4px; background: #f1f5f9; color: #26374d; font-family: Consolas, monospace; font-size: 10px; }
+      footer { display: flex; justify-content: space-between; gap: 12px; margin: 10px 2px 0; color: #6a7788; font-size: 9px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Karu Primary Healthcare Centre · Quality assurance</p>
+          <p class="brand">Maternal and Child Healthcare Monitoring System</p>
+        </div>
+        <div class="unit">
+          <strong>UNIT TEST RESULTS</strong><br>
+          UT-07 · Estimated delivery date
+        </div>
+      </header>
+
+      <section class="summary" aria-labelledby="report-title">
+        <div>
+          <p class="eyebrow" style="color:#718095">Pregnancy date scenario</p>
+          <h1 id="report-title">Estimated delivery date calculation</h1>
+          <p class="subheading">Documented rule: 280 days after LMP · valid and invalid date handling</p>
+        </div>
+        <div class="score" aria-label="Test score 3 out of 3">
+          <div class="score-label">Test score</div>
+          <div class="score-value">3 / 3</div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Test run totals">
+        <div class="metric passed"><div class="metric-label">Passed</div><div class="metric-value">3</div></div>
+        <div class="metric failed"><div class="metric-label">Failed</div><div class="metric-value">0</div></div>
+        <div class="metric blocked"><div class="metric-label">Blocked</div><div class="metric-value">0</div></div>
+      </section>
+
+      <section class="section" aria-labelledby="breakdown-title">
+        <div class="section-heading">
+          <h2 id="breakdown-title">Test-case breakdown</h2>
+          <p>Calls the application's shared estimated-delivery-date helper with synthetic date values.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="case">Case</th>
+              <th class="expectation">Expected behavior</th>
+              <th class="actual">Observed result</th>
+              <th class="result">Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="case">Valid LMP · 2025-01-01</td>
+              <td class="expectation">Returns a Date exactly 280 days later: 2025-10-08.</td>
+              <td class="actual">Returned a Date for 2025-10-08, exactly 280 days after the valid LMP.</td>
+              <td class="result">PASS</td>
+            </tr>
+            <tr>
+              <td class="case">Impossible LMP · 2025-02-30</td>
+              <td class="expectation">Safely returns null; no date rollover and no thrown exception.</td>
+              <td class="actual">Initial run exposed rollover to 2025-12-07. After the shared strict-date validation fix, returned null without throwing.</td>
+              <td class="result">PASS</td>
+            </tr>
+            <tr>
+              <td class="case">Malformed LMP · not-a-date</td>
+              <td class="expectation">Safely returns null without a thrown exception.</td>
+              <td class="actual">Returned null without throwing.</td>
+              <td class="result">PASS</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="details" aria-label="Execution details">
+        <div class="detail-card">
+          <h2>Execution details</h2>
+          <p><strong>Command:</strong> <code>npx vitest run tests/UT-07.test.js</code></p>
+          <p><strong>Framework:</strong> Vitest 5.0.4 · exact individual test file only</p>
+          <p><strong>Run result:</strong> Final run: 1 test file passed · 3 tests passed · exit code 0.</p>
+        </div>
+        <div class="detail-card">
+          <h2>Isolation and assertions</h2>
+          <p><strong>Subject under test:</strong> Actual <code>calculateEstimatedDeliveryDate</code> pregnancy helper; it now uses shared strict date validation before calculation.</p>
+          <p><strong>Boundary:</strong> Pure date calculation; no database or external services. Initial run: 1 failure confirmed impossible-date rollover; final run passed.</p>
+          <p><strong>Privacy:</strong> Fixed synthetic date strings only; no patient data, credentials, or secrets.</p>
+        </div>
+      </section>
+
+      <footer>
+        <span>Evidence reflects the final UT-07 run; initial defect and repair are noted.</span>
+        <span>Estimated delivery date calculation · UT-07</span>
+      </footer>
+    </main>
+  </body>
+</html>

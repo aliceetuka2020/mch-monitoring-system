@@ -1,0 +1,256 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  fullName      String
+  email         String         @unique
+  username      String?        @unique
+  password      String
+  role          String         @default("HEALTH_WORKER")
+  active        Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  ancRecords    AncRecord[]
+  immunizations Immunization[]
+  childVisits   ChildVisit[]
+}
+
+model Role {
+  id          Int              @id @default(autoincrement())
+  slug        String           @unique
+  name        String
+  permissions RolePermission[]
+  createdAt   DateTime         @default(now())
+}
+
+model Permission {
+  id          Int              @id @default(autoincrement())
+  identifier  String           @unique
+  description String?
+  roles       RolePermission[]
+}
+
+model RolePermission {
+  roleId       Int
+  permissionId Int
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  @@id([roleId, permissionId])
+}
+
+model Patient {
+  id                           Int               @id @default(autoincrement())
+  cardNo                       String            @unique
+  fullName                     String
+  phone                        String
+  address                      String            @default("")
+  dateOfBirth                  DateTime?
+  bloodGroup                   String?
+  genotype                     String?
+  nextOfKin                    String?
+  previousPregnancies          String?
+  pregnancyHistory             String?
+  medicalHistory               String?
+  riskFactors                  String?
+  pregnancyInformation         String?
+  clinicalObservations         String?
+  followUpInformation          String?
+  estimatedDeliveryDate        DateTime?
+  gestationalAgeAtRegistration String?
+  registrationDate             DateTime          @default(now())
+  ancRecords                   AncRecord[]
+  children                     Child[]
+  appointments                 Appointment[]
+  notifications                Notification[]
+  deliveries                   DeliveryRecord[]
+  postnatalRecords             PostnatalRecord[]
+  pregnancies                  Pregnancy[]
+  portalOtps                   PatientPortalOtp[]
+  portalSessions               PatientPortalSession[]
+}
+
+model Pregnancy {
+  id                   Int       @id @default(autoincrement())
+  patientId            Int
+  patient              Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  startDate            DateTime?
+  lastMenstrualPeriod  DateTime?
+  estimatedDeliveryDate DateTime?
+  gravida              Int?
+  parity               Int?
+  status               String    @default("ONGOING")
+  outcome              String?
+  createdAt            DateTime  @default(now())
+  ancRecords           AncRecord[]
+}
+
+model AncRecord {
+  id             Int       @id @default(autoincrement())
+  patientId      Int
+  patient        Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  pregnancyId    Int?
+  pregnancy      Pregnancy? @relation(fields: [pregnancyId], references: [id], onDelete: SetNull)
+  visitDate      DateTime
+  gestationalAge String
+  weight         Float
+  bloodPressure  String    @default("")
+  symptoms       String?
+  clinicalNotes  String?
+  laboratoryInfo String?
+  foetalAssessment String?
+  medicationsSupplements String?
+  healthEducation String?
+  nextVisit      DateTime?
+  recordedById   Int
+  recordedBy     User      @relation(fields: [recordedById], references: [id])
+  createdAt      DateTime  @default(now())
+}
+
+model Child {
+  id                  Int            @id @default(autoincrement())
+  childNo             String?        @unique
+  patientId           Int
+  patient             Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  name                String
+  dateOfBirth         DateTime
+  gender              String         @default("Female")
+  birthWeight         Float?
+  medicalHistory      String?
+  guardianName        String?
+  guardianPhone       String?
+  guardianRelationship String?
+  placeOfBirth        String?
+  deliveryType        String?
+  registrationDate    DateTime       @default(now())
+  immunizations       Immunization[]
+  growthRecords       GrowthRecord[]
+  visits              ChildVisit[]
+  appointments        Appointment[]
+}
+
+model ChildVisit {
+  id           Int       @id @default(autoincrement())
+  childId      Int
+  child        Child     @relation(fields: [childId], references: [id], onDelete: Cascade)
+  visitDate    DateTime
+  reason       String
+  findings     String?
+  treatment    String?
+  nextVisit    DateTime?
+  recordedById Int
+  recordedBy   User      @relation(fields: [recordedById], references: [id])
+  createdAt    DateTime  @default(now())
+}
+
+model Immunization {
+  id               Int       @id @default(autoincrement())
+  childId          Int
+  child             Child     @relation(fields: [childId], references: [id], onDelete: Cascade)
+  vaccineName      String
+  dose             String
+  dateGiven        DateTime
+  nextDueDate      DateTime?
+  administeredById Int
+  administeredBy   User      @relation(fields: [administeredById], references: [id])
+  remarks          String?
+}
+
+model GrowthRecord {
+  id                Int      @id @default(autoincrement())
+  childId           Int
+  child             Child    @relation(fields: [childId], references: [id], onDelete: Cascade)
+  measurementDate   DateTime
+  ageInMonths       Int      @default(0)
+  weight            Float
+  height            Float
+  headCircumference Float?
+  observation       String?
+}
+
+model Appointment {
+  id        Int       @id @default(autoincrement())
+  patientId Int
+  patient   Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  childId   Int?
+  child     Child?    @relation(fields: [childId], references: [id], onDelete: SetNull)
+  date      DateTime
+  time      String?
+  type      String    @default("Antenatal")
+  status    String    @default("SCHEDULED")
+  notes     String?
+}
+
+model Notification {
+  id        Int       @id @default(autoincrement())
+  patientId Int
+  patient   Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  type      String
+  message   String
+  dueDate   DateTime
+  status    String    @default("PENDING")
+  sentAt    DateTime?
+  channel   String    @default("NONE")
+  createdAt DateTime  @default(now())
+}
+
+model DeliveryRecord {
+  id            Int      @id @default(autoincrement())
+  patientId     Int
+  patient       Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  deliveryDate  DateTime
+  deliveryMode  String
+  outcome       String
+  facility      String?
+  complications String?
+  notes         String?
+  recordedAt    DateTime @default(now())
+}
+
+model PostnatalRecord {
+  id              Int      @id @default(autoincrement())
+  patientId       Int
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  visitDate       DateTime
+  motherCondition String?
+  babyCondition   String?
+  feeding         String?
+  complications   String?
+  notes           String?
+  nextVisit       DateTime?
+  recordedAt      DateTime @default(now())
+}
+
+model Setting {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model PatientPortalOtp {
+  id         Int       @id @default(autoincrement())
+  patientId  Int
+  patient    Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  codeHash   String
+  expiresAt  DateTime
+  attempts   Int       @default(0)
+  usedAt     DateTime?
+  createdAt  DateTime  @default(now())
+  @@index([patientId, createdAt])
+}
+
+model PatientPortalSession {
+  id         Int       @id @default(autoincrement())
+  patientId  Int
+  patient    Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  tokenHash  String    @unique
+  expiresAt  DateTime
+  createdAt  DateTime  @default(now())
+  @@index([patientId, expiresAt])
+}

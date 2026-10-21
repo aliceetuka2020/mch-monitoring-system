@@ -1,0 +1,5 @@
+evaluation_code,child_code,vaccine_name,dose,as_of_date,schedule_rule_version,reference_due_or_overdue,system_due_or_overdue
+SYNTH-E01,SYNTH-C01,BCG,Birth,2026-01-01,SYNTHETIC-ONLY,1,1
+SYNTH-E02,SYNTH-C02,Penta,Penta 1,2026-01-01,SYNTHETIC-ONLY,0,0
+SYNTH-E03,SYNTH-C03,OPV,OPV1,2026-01-01,SYNTHETIC-ONLY,1,0
+SYNTH-E04,SYNTH-C04,Measles-Rubella,MR1,2026-01-01,SYNTHETIC-ONLY,0,1

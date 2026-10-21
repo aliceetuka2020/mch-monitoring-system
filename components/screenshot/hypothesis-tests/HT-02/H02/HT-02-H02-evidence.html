@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HT-02 / H02 — Record quality evaluation preparation</title>
+    <style>
+      :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #19283a; background: #f1f5f9; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 24px 32px; min-width: 900px; }
+      main { max-width: 1160px; margin: 0 auto; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; min-height: 68px; padding: 14px 22px; border-radius: 9px; background: #17466a; color: #fff; }
+      .eyebrow { margin: 0 0 4px; color: #c4d8e8; font-size: 10px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; }
+      .brand { margin: 0; font-size: 18px; font-weight: 700; }
+      .unit { text-align: right; font-size: 11px; line-height: 1.5; color: #e0ebf4; }
+      .summary { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding: 19px 22px; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; box-shadow: 0 2px 7px #1720330a; }
+      h1 { margin: 4px 0 5px; font-size: 21px; }
+      .subheading { margin: 0; color: #637286; font-size: 12px; }
+      .badge { min-width: 190px; padding: 14px 18px; border-radius: 9px; background: #fff9e7; color: #805d0b; text-align: center; }
+      .badge-label { font-size: 10px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; }
+      .badge-value { margin-top: 4px; font-size: 15px; font-weight: 700; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+      .metric { min-height: 66px; padding: 12px 17px; border-radius: 9px; }
+      .metric-label { font-size: 11px; color: #526175; }
+      .metric-value { margin-top: 2px; font-size: 19px; font-weight: 700; }
+      .passed { background: #e8fbf3; color: #167451; }
+      .failed { background: #fff0f0; color: #a53d45; }
+      .blocked { background: #fff9e7; color: #946814; }
+      .section { overflow: hidden; border: 1px solid #e4eaf0; border-radius: 10px; background: #fff; box-shadow: 0 2px 7px #1720330a; }
+      .section-heading { padding: 13px 17px 11px; border-bottom: 1px solid #e5eaf0; }
+      .section-heading h2 { margin: 0; font-size: 14px; }
+      .section-heading p { margin: 4px 0 0; color: #6a7788; font-size: 10px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      th, td { padding: 8px 11px; border-bottom: 1px solid #edf0f4; text-align: left; vertical-align: top; font-size: 10px; line-height: 1.35; overflow-wrap: anywhere; }
+      th { background: #f7f9fb; color: #526175; font-weight: 700; }
+      tbody tr:last-child td { border-bottom: 0; }
+      .case { width: 25%; font-weight: 700; }
+      .expectation { width: 47%; color: #536175; }
+      .result { width: 28%; font-weight: 700; color: #167451; }
+      .details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+      .detail-card { padding: 13px 16px; border: 1px solid #e4eaf0; border-radius: 9px; background: #fff; }
+      .detail-card h2 { margin: 0 0 8px; font-size: 12px; }
+      .detail-card p { margin: 5px 0; color: #536175; font-size: 10px; line-height: 1.45; }
+      code { padding: 2px 5px; border-radius: 4px; background: #f1f5f9; color: #26374d; font-family: Consolas, monospace; font-size: 10px; }
+      footer { display: flex; justify-content: space-between; gap: 12px; margin: 10px 2px 0; color: #6a7788; font-size: 9px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Karu Primary Healthcare Centre · Evaluation preparation</p>
+          <p class="brand">Maternal and Child Healthcare Monitoring System</p>
+        </div>
+        <div class="unit">
+          <strong>HYPOTHESIS EVALUATION</strong><br>
+          HT-02 / H02 · Record quality
+        </div>
+      </header>
+
+      <section class="summary" aria-labelledby="report-title">
+        <div>
+          <p class="eyebrow" style="color:#718095">Verified reference versus system records</p>
+          <h1 id="report-title">Accuracy, completeness, and duplicate review</h1>
+          <p class="subheading">Field-by-field comparison · paired presence analysis · linked record duplicate rate · alpha 0.05</p>
+        </div>
+        <div class="badge" aria-label="Study status: not tested">
+          <div class="badge-label">Hypothesis status</div>
+          <div class="badge-value">NOT TESTED — NO DATA</div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Software validation totals">
+        <div class="metric passed"><div class="metric-label">Validation checks passed</div><div class="metric-value">7</div></div>
+        <div class="metric failed"><div class="metric-label">Validation checks failed</div><div class="metric-value">0</div></div>
+        <div class="metric blocked"><div class="metric-label">Verified study rows available</div><div class="metric-value">0</div></div>
+      </section>
+
+      <section class="section" aria-labelledby="breakdown-title">
+        <div class="section-heading">
+          <h2 id="breakdown-title">Software validation breakdown — not study findings</h2>
+          <p>Only the tool was tested. Synthetic fixtures validate formulas and input safeguards; no study accuracy, completeness, duplicate rate, or p-value is reported.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="case">Validation case</th>
+              <th class="expectation">Expected behavior</th>
+              <th class="result">Observed outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="case">Header-only input files</td>
+              <td class="expectation">Return NO_STUDY_DATA; do not calculate rates or significance.</td>
+              <td class="result">PASS · no findings emitted</td>
+            </tr>
+            <tr>
+              <td class="case">Synthetic field comparisons</td>
+              <td class="expectation">Calculate trimmed/case-folded agreement, completeness, and paired discordance counts.</td>
+              <td class="result">PASS · fixture only</td>
+            </tr>
+            <tr>
+              <td class="case">Synthetic duplicate records</td>
+              <td class="expectation">Count extra linked records and separately count unmatched records.</td>
+              <td class="result">PASS · fixture only</td>
+            </tr>
+            <tr>
+              <td class="case">Duplicate record-field key</td>
+              <td class="expectation">Reject repeated reference-record/field rows instead of double-counting.</td>
+              <td class="result">PASS · explicit input error</td>
+            </tr>
+            <tr>
+              <td class="case">Duplicate system record code</td>
+              <td class="expectation">Reject non-unique system-record identifiers.</td>
+              <td class="result">PASS · explicit input error</td>
+            </tr>
+            <tr>
+              <td class="case">Wilson and exact McNemar methods</td>
+              <td class="expectation">Use descriptive Wilson intervals and two-sided exact paired-presence test at alpha 0.05.</td>
+              <td class="result">PASS · Wilson bounds and exact p-values verified</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="details" aria-label="Execution details">
+        <div class="detail-card">
+          <h2>Tool validation</h2>
+          <p><strong>Command:</strong> <code>python evaluation\HT-02-H02\test_analyze_record_quality.py</code></p>
+          <p><strong>Framework:</strong> Python unittest · focused validation file only</p>
+          <p><strong>Run result:</strong> 7 tests passed · exit code 0.</p>
+          <p><strong>Test data:</strong> Synthetic software fixtures only; not research observations.</p>
+        </div>
+        <div class="detail-card">
+          <h2>Study inputs still needed</h2>
+          <p><strong>Reference:</strong> Independently verified in-scope dataset and prespecified record/field definitions.</p>
+          <p><strong>System comparison:</strong> Authorized, de-identified field values mapped to the same pseudonymous record codes.</p>
+          <p><strong>Duplicate review:</strong> One row per system record with unique pseudonymous system codes and verified canonical links; unmatched records marked separately.</p>
+          <p><strong>Privacy:</strong> Do not put patient identifiers, contact data, or clinical details in unapproved files.</p>
+        </div>
+      </section>
+
+      <footer>
+        <span>Evidence confirms tool validation only; HT-02 has not been tested with study data.</span>
+        <span>HT-02 / H02 · Record quality evaluation</span>
+      </footer>
+    </main>
+  </body>
+</html>
