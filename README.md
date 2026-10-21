@@ -12,6 +12,10 @@ An appointment always belongs to a mother. It may also be linked to one of that 
 
 Use Node.js 18 or later. From this project directory run `npm install`, `npx prisma db push`, `npm run db:migrate-data`, `npm run db:seed`, then `npm run dev`. Open `http://localhost:3000` in a browser. For a production deployment, configure a strong, private `AUTH_SECRET` environment variable before starting the application. Production startup stops with a clear error if it is missing. Do not commit the secret or place it in application logs.
 
+## Deploying to Vercel
+
+See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) for GitHub import steps, Supabase pooled and direct connection variables, the required production secret, and optional Twilio settings. Do not add `.env` or production credentials to GitHub. Use a separate Supabase database for Vercel Preview deployments; production environment variables should be scoped to Production.
+
 ## Default accounts
 
 The seeded administrator account is `admin@karuphc.gov.ng` with password `Admin123!`. The seeded health-worker account is `worker@karuphc.gov.ng` with password `Worker123!`. Change both passwords after the initial sign-in. New accounts and password changes require at least eight characters with one letter and one number.
